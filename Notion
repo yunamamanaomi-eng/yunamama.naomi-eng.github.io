@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    font-family: "Yu Gothic", "Hiragino Sans", sans-serif;
+  }
+
+  .widget {
+    width: 100%;
+    max-width: 520px;
+    padding: 24px 32px;
+    border-radius: 24px;
+    background: #fff8f1;
+    border: 1px solid #ead8c8;
+    box-shadow: 0 8px 24px rgba(120, 80, 40, 0.08);
+    text-align: center;
+    color: #6b4b3e;
+  }
+
+  .date {
+    font-size: 20px;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .time {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #a18473;
+  }
+</style>
+</head>
+<body>
+  <div class="widget">
+    <div class="date" id="date"></div>
+    <div class="time" id="time"></div>
+    <div class="message">今日もゆるっと整える日</div>
+  </div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+
+  const date = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "long"
+  }).format(now);
+
+  const time = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  }).format(now);
+
+  document.getElementById("date").textContent = date;
+  document.getElementById("time").textContent = time;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
